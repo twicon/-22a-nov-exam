@@ -1,0 +1,16 @@
+.card {
+	width: 100px;
+	aspect-ratio: 1 / 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 1rem;
+	border: 1px solid black;
+	flex-wrap: wrap;
+}
+
+.card__front {}
+
+.card__flipped {
+	background-color: cadetblue;
+}
