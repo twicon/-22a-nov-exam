@@ -14,5 +14,5 @@ function setupDeck() {
 
 function startGame(deck) {
 	setupEventListeners(deck);
-	console.log('game started');
+	console.log('game started', { deck });
 }

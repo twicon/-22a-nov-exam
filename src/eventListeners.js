@@ -1,16 +1,17 @@
 let flipCount = 0;
 
 export function setupEventListeners(deck) {
-	for (const { cardElement } of deck) {
-		addFlipHandler(cardElement);
+	for (const card of deck) {
+		addFlipHandler(card);
 	}
 }
 
-function addFlipHandler(cardElement) {
-	cardElement.addEventListener('click', function () {
-		if (cardElement.isFlipped || flipCount === 2) return;
+function addFlipHandler(card) {
+	card.cardElement.addEventListener('click', function () {
+		if (card.isFlipped || flipCount === 2) return;
 
-		cardElement.classList.add('card--flipped');
+		card.cardElement.classList.add('card--flipped');
+		card.isFlipped = true;
 		++flipCount;
 	});
 }
