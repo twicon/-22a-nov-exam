@@ -2,17 +2,17 @@ import { createCardsObject, createDeck, paintCardsOnBoard } from './deck.js';
 import { setupEventListeners } from './eventListeners.js';
 
 export function setupGame() {
-	const deckData = setupDeck();
-	paintCardsOnBoard(deckData);
-	startGame(deckData);
+	const deck = setupDeck();
+	paintCardsOnBoard(deck);
+	startGame(deck);
 }
 
 function setupDeck() {
-	const deck = createDeck();
-	return createCardsObject(deck);
+	const deckBlueprint = createDeck();
+	return createCardsObject(deckBlueprint);
 }
 
-function startGame(deckData) {
-	setupEventListeners(deckData);
-	console.log('game started', { deckData });
+function startGame(deck) {
+	setupEventListeners(deck);
+	console.log('game started');
 }
