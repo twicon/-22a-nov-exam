@@ -33,9 +33,4 @@
 	&--flipped &__container {
 		transform: rotateY(180deg);
 	}
-
-	// change to click event
-	&:hover &__container {
-		transform: rotateY(180deg);
-	}
 }

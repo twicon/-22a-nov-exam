@@ -33,8 +33,5 @@
 .card--flipped .card__container {
   transform: rotateY(180deg);
 }
-.card:hover .card__container {
-  transform: rotateY(180deg);
-}
 
 /*# sourceMappingURL=style.css.map */
