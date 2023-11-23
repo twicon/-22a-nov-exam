@@ -1,15 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 .card {
+  display: inline-block;
   width: 100px;
   aspect-ratio: 1/1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   margin: 1rem;
-  border: 1px solid black;
-  flex-wrap: wrap;
+  perspective: 9999px;
 }
-.card__flipped {
-  background-color: cadetblue;
+.card__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 500ms ease-out;
+}
+.card__front, .card__back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.card__front {
+  background-color: darkblue;
+  color: white;
+}
+.card__back {
+  background-color: aqua;
+  transform: rotateY(180deg);
+}
+.card--flipped .card__container {
+  transform: rotateY(180deg);
 }
 
 /*# sourceMappingURL=style.css.map */
