@@ -23,10 +23,18 @@ export function createCardsObject(boardBlueprint) {
 		const cardFront = document.createElement('p');
 		cardFront.classList.add('card__front');
 		cardFront.appendChild(document.createTextNode(card.value));
+		const cardBack = document.createElement('p');
+		cardBack.classList.add('card__back');
+		cardBack.appendChild(document.createTextNode(card.value + 'b'));
+
+		const cardContainer = document.createElement('div');
+		cardContainer.classList.add('card__container');
+		cardContainer.appendChild(cardFront);
+		cardContainer.appendChild(cardBack);
 
 		const cardElement = document.createElement('article');
 		cardElement.classList.add('card');
-		cardElement.appendChild(cardFront);
+		cardElement.appendChild(cardContainer);
 
 		domRefs.push({ cardElement, isPair: false, isFlipped: false });
 	}

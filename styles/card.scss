@@ -1,0 +1,41 @@
+.card {
+	display: inline-block;
+	width: 100px;
+	aspect-ratio: 1 / 1;
+	margin: 1rem;
+	perspective: 9999px;
+
+	&__container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		transform-style: preserve-3d;
+		transition: transform 500ms ease-out;
+	}
+
+	&__front,
+	&__back {
+		position: absolute;
+		inset: 0;
+		backface-visibility: hidden;
+	}
+
+	&__front {
+		background-color: darkblue;
+		color: white;
+	}
+
+	&__back {
+		background-color: aqua;
+		transform: rotateY(180deg);
+	}
+
+	&--flipped &__container {
+		transform: rotateY(180deg);
+	}
+
+	// change to click event
+	&:hover &__container {
+		transform: rotateY(180deg);
+	}
+}
