@@ -7,4 +7,4 @@ export const frontImagePaths = [
 	{ value: 6, img: 'images/bild6.webp' },
 ];
 
-export const backImagePath = 'imagescard.webp'; // Common backside image
+export const backImagePaths = ['images/card.webp']; // Common backside image
