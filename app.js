@@ -20,3 +20,11 @@ document.querySelector('#playerForm').addEventListener('submit', function(event)
         console.log('Please enter names for both players');
     }
 })
+// Event listener to enable the OK button when both player names are entered
+document.querySelectorAll('#player1, #player2').forEach(item => {
+    item.addEventListener('input', function() {
+        var player1 = document.querySelector('#player1').value;
+        var player2 = document.querySelector('#player2').value;
+        document.querySelector('#okButton').disabled = !(player1 && player2);
+    });
+});
