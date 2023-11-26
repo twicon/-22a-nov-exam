@@ -1,5 +1,3 @@
-import { incrementScoreForPlayer } from './store/state.js';
-
 export function setupScoreboardListener() {
 	const scoreElement = document.querySelector('.scoreboard');
 
@@ -24,22 +22,4 @@ export function setupScoreboardListener() {
 				e.detail.names.player2;
 		}
 	});
-}
-
-export function setupFlipListeners(deck) {
-	// placeholder, needs logic to determine if two cards are a pair and what players is flipping
-	let flipCount = 0; // move somewhere else
-
-	for (const card of deck) {
-		card.cardElement.addEventListener('click', function () {
-			// TODO: get cards from state instead of arg
-			if (card.isFlipped || flipCount === 2) return;
-
-			card.cardElement.classList.add('card--flipped');
-			card.isFlipped = true;
-
-			incrementScoreForPlayer(1);
-			++flipCount;
-		});
-	}
 }

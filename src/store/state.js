@@ -8,7 +8,7 @@ const state = {
 		player1: '',
 		player2: '',
 	},
-	deck: [],
+	deck: [], // TODO: cardElements do not need to be stored in state
 };
 
 export function incrementScoreForPlayer(number) {
@@ -43,6 +43,6 @@ export function resetDeckState(newDeck) {
 	state.deck = newDeck;
 }
 
-export function updateDeck(update) {
-	state.deck = { ...state.deck, ...update };
+export function updateDeck(index, newData) {
+	state.deck[index] = { ...state.deck[index], ...newData };
 }

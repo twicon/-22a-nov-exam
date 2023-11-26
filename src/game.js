@@ -1,6 +1,6 @@
 import { takeTurn } from './turn.js';
 
-export function startGame() {
+export async function startGame() {
 	// placeholder function
 	console.log('game started');
 	let gameIsRunning = true;
@@ -8,9 +8,10 @@ export function startGame() {
 	let turnsCompleted = 0;
 
 	while (gameIsRunning) {
-		takeTurn(currentPlayer);
+		await takeTurn(currentPlayer);
 
 		currentPlayer = (currentPlayer % 2) + 1; // alternate between 1 and 2
-		if (++turnsCompleted === 4) gameIsRunning = false;
+		if (++turnsCompleted === 2) gameIsRunning = false;
 	}
+	console.log('gameOver')
 }
