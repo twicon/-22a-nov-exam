@@ -8,6 +8,7 @@ const state = {
 		player1: '',
 		player2: '',
 	},
+	deck: [],
 };
 
 export function incrementScoreForPlayer(number) {
@@ -32,4 +33,16 @@ export function updatePlayerNames(player1, player2) {
 			detail: { names: state.names },
 		})
 	);
+}
+
+export function getDeck() {
+	return state.deck;
+}
+
+export function resetDeckState(newDeck) {
+	state.deck = newDeck;
+}
+
+export function updateDeck(update) {
+	state.deck = { ...state.deck, ...update };
 }

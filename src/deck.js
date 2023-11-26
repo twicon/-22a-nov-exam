@@ -1,5 +1,5 @@
-import { setupFlipListeners } from './listeners.js';
 import { backImagePaths, frontImagePaths } from './store/images.js';
+import { resetDeckState } from './store/state.js';
 import { shuffleArray } from './utils.js';
 
 export function setupDeck() {
@@ -7,15 +7,11 @@ export function setupDeck() {
 	const deckBlueprint = createDeckBlueprint();
 
 	// create HTML elements for the cards
-	const cardsObject = createCardsObject(deckBlueprint);
+	const deck = createDeck(deckBlueprint);
 
-	// show the cards in the browser
-	paintCardsOnBoard(cardsObject);
+	paintCardsOnBoard(deck); // show the cards in the browser
 
-	// add event listeners to the cards
-	setupFlipListeners(cardsObject);
-
-	// TODO: add cardsObject to state
+	resetDeckState(deck); // add new deck to state
 }
 
 function createDeckBlueprint() {
@@ -24,8 +20,8 @@ function createDeckBlueprint() {
 	return shuffleArray(deck);
 }
 
-function createCardsObject(deckBlueprint) {
-	const cardsObject = [];
+function createDeck(deckBlueprint) {
+	const deck = [];
 
 	for (const card of deckBlueprint) {
 		// Create the front and back of the card as an <img> elements
@@ -48,16 +44,16 @@ function createCardsObject(deckBlueprint) {
 		cardElement.classList.add('card');
 		cardElement.appendChild(cardContainer);
 
-		cardsObject.push({ cardElement, isPair: false, isFlipped: false });
+		deck.push({ cardElement, isPair: false, isFlipped: false });
 	}
 
-	return cardsObject;
+	return deck;
 }
 
-export function paintCardsOnBoard(cardsObject) {
+export function paintCardsOnBoard(deck) {
 	const gameBoard = document.querySelector('main');
 
-	for (const card of cardsObject) {
+	for (const card of deck) {
 		gameBoard.appendChild(card.cardElement);
 	}
 }
