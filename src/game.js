@@ -1,3 +1,4 @@
+import { flipBackCards } from './store/state.js';
 import { takeTurn } from './turn.js';
 
 export async function startGame() {
@@ -10,7 +11,9 @@ export async function startGame() {
 	while (gameIsRunning) {
 		const changePlayer = await takeTurn(currentPlayer);
 
-		if (changePlayer) currentPlayer = (currentPlayer % 2) + 1; // alternate between 1 and 2
+		flipBackCards();
+
+		if (changePlayer) currentPlayer = (currentPlayer % 2) + 1; // swap between 1 and 2 if no pair
 		if (++turnsCompleted === 2) gameIsRunning = false;
 	}
 	console.log('gameOver');

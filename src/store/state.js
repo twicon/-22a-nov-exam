@@ -46,3 +46,11 @@ export function resetDeckState(newDeck) {
 export function updateDeck(index, newData) {
 	state.deck[index] = { ...state.deck[index], ...newData };
 }
+
+export function flipBackCards() {
+	for (const card of state.deck) {
+		if (!card.isPair) {
+			card.cardElement.classList.remove('card--flipped');
+		}
+	}
+}
