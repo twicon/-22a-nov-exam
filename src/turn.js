@@ -8,8 +8,11 @@ export async function takeTurn(currentPlayer) {
 	console.log({ firstCardValue, secondCardValue });
 
 	if (firstCardValue === secondCardValue) {
-		incrementScoreForPlayer(currentPlayer); // TODO: add logic for pairs
+		incrementScoreForPlayer(currentPlayer);
+		return false;
 	}
+
+	return true;
 }
 
 const selectCard = () =>

@@ -8,10 +8,10 @@ export async function startGame() {
 	let turnsCompleted = 0;
 
 	while (gameIsRunning) {
-		await takeTurn(currentPlayer);
+		const changePlayer = await takeTurn(currentPlayer);
 
-		currentPlayer = (currentPlayer % 2) + 1; // alternate between 1 and 2
+		if (changePlayer) currentPlayer = (currentPlayer % 2) + 1; // alternate between 1 and 2
 		if (++turnsCompleted === 2) gameIsRunning = false;
 	}
-	console.log('gameOver')
+	console.log('gameOver');
 }
