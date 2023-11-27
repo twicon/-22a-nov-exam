@@ -1,4 +1,4 @@
-import { getDeck, incrementScoreForPlayer, updateDeck } from './store/state.js';
+import { getDeck, incrementScoreForPlayer, updateCard } from './store/state.js';
 import { findChildOfParent } from './utils.js';
 
 export async function takeTurn(currentPlayer) {
@@ -31,8 +31,7 @@ const selectCard = () =>
 
 			// only flip cards with back side up
 			if (clickedIndex !== -1 && !deck[clickedIndex].isFlipped) {
-				updateDeck(clickedIndex, { isFlipped: true });
-				deck[clickedIndex].cardElement.classList.add('card--flipped'); // TODO: move
+				updateCard(clickedIndex, { isFlipped: true });
 
 				// clean up old listener as new listener is added every time function runs
 				deckElement.removeEventListener('click', flipListener);

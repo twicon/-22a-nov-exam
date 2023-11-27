@@ -14,3 +14,16 @@ export function findChildOfParent(child, parent) {
 
 	return findChildOfParent(child.parentElement, parent); // try looking one generation higher
 }
+
+export function removeFlippedClass(element, isFirstCard) {
+	return new Promise((resolve) => {
+		// promise to allow waiting inside loop
+		setTimeout(
+			function () {
+				element.classList.remove('card--flipped');
+				resolve();
+			},
+			isFirstCard ? 2000 : 400 // delay before first card is flipped is longer
+		);
+	});
+}

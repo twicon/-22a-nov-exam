@@ -1,3 +1,5 @@
+import { removeFlippedClass } from "../utils.js";
+
 const state = {
 	// state hold all data that often change during the game
 	score: {
@@ -43,32 +45,23 @@ export function resetDeckState(newDeck) {
 	state.deck = newDeck;
 }
 
-export function updateDeck(index, newData) {
+export function updateCard(index, newData) {
 	state.deck[index] = { ...state.deck[index], ...newData };
+
+	if (newData.isFlipped) {
+		state.deck[index].cardElement.classList.add('card--flipped'); // TODO: move
+	}
 }
 
 export async function flipBackCards() {
-	let firstCard = true;
+	let isFirstCard = true;
 
 	for (const card of state.deck) {
 		// check for isFlipped so we don't add timeouts that don't do anything
 		if (card.isFlipped && !card.isPair) {
-			await removeFlippedClass(card.cardElement, firstCard);
+			await removeFlippedClass(card.cardElement, isFirstCard);
 			card.isFlipped = false;
-			firstCard = false;
+			isFirstCard = false;
 		}
 	}
-}
-
-function removeFlippedClass(element, firstCard) {
-	return new Promise((resolve) => {
-		// promise to allow waiting inside loop
-		setTimeout(
-			function () {
-				element.classList.remove('card--flipped');
-				resolve();
-			},
-			firstCard ? 2000 : 400 // delay before first card is flipped is longer
-		);
-	});
 }
