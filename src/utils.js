@@ -5,3 +5,12 @@ export function shuffleArray(array) {
 	}
 	return array;
 }
+
+// recursive function to find child of parent when you might have a (grand)grandchild
+export function findChildOfParent(child, parent) {
+	if (child === parent) return parent; // a parent can not be a child of itself
+
+	if (child.parentElement === parent) return child; // child found, stop looking
+
+	return findChildOfParent(child.parentElement, parent); // try looking one generation higher
+}

@@ -1,4 +1,5 @@
 import { getDeck, incrementScoreForPlayer, updateDeck } from './store/state.js';
+import { findChildOfParent } from './utils.js';
 
 export async function takeTurn(currentPlayer) {
 	console.log('takeTurn', { currentPlayer });
@@ -22,7 +23,7 @@ const selectCard = () =>
 		console.log({ deck });
 
 		function flipListener(e) {
-			const clickedCard = e.target.parentElement.parentElement; // TODO: make dynamic
+			const clickedCard = findChildOfParent(e.target, deckElement);
 
 			// find index of card clicked
 			const clickedIndex = [...deckElement.children].indexOf(clickedCard);
