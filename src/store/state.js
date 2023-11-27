@@ -8,7 +8,7 @@ const state = {
 		player1: '',
 		player2: '',
 	},
-	deck: [], // TODO: cardElements do not need to be stored in state
+	deck: [],
 };
 
 export function incrementScoreForPlayer(number) {
@@ -47,10 +47,28 @@ export function updateDeck(index, newData) {
 	state.deck[index] = { ...state.deck[index], ...newData };
 }
 
-export function flipBackCards() {
+export async function flipBackCards() {
+	let firstCard = true;
+
 	for (const card of state.deck) {
-		if (!card.isPair) {
-			card.cardElement.classList.remove('card--flipped');
+		// check for isFlipped so we don't add timeouts that don't do anything
+		if (card.isFlipped && !card.isPair) {
+			await removeFlippedClass(card.cardElement, firstCard);
+			card.isFlipped = false;
+			firstCard = false;
 		}
 	}
+}
+
+function removeFlippedClass(element, firstCard) {
+	return new Promise((resolve) => {
+		// promise to allow waiting inside loop
+		setTimeout(
+			function () {
+				element.classList.remove('card--flipped');
+				resolve();
+			},
+			firstCard ? 2000 : 400 // delay before first card is flipped is longer
+		);
+	});
 }

@@ -11,7 +11,7 @@ export async function startGame() {
 	while (gameIsRunning) {
 		const changePlayer = await takeTurn(currentPlayer);
 
-		flipBackCards();
+		await flipBackCards(); // also contains a delay so players have time to memorize the cards
 
 		if (changePlayer) currentPlayer = (currentPlayer % 2) + 1; // swap between 1 and 2 if no pair
 		if (++turnsCompleted === 2) gameIsRunning = false;
