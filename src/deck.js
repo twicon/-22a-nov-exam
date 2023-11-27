@@ -14,7 +14,9 @@ export function setupDeck() {
 	resetDeckState(deck); // add new deck to state
 }
 
-function createDeckBlueprint() {
+function createDeckBlueprint(frontImgPaths, backImg) {
+	// 1. Lägg till values på images. så 'images/bild1.webp' blir {value: 1, img: 'images/bild2.webp'}
+
 	const deck = frontImagePaths.concat(frontImagePaths);
 
 	return shuffleArray(deck);

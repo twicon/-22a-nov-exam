@@ -6,7 +6,10 @@ export async function takeTurn(currentPlayer) {
 	const firstCardValue = await selectCard();
 	const secondCardValue = await selectCard();
 	console.log({ firstCardValue, secondCardValue });
-	incrementScoreForPlayer(currentPlayer); // TODO: add logic for pairs
+
+	if (firstCardValue === secondCardValue) {
+		incrementScoreForPlayer(currentPlayer); // TODO: add logic for pairs
+	}
 }
 
 const selectCard = () =>
