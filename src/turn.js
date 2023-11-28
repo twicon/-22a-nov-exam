@@ -1,6 +1,7 @@
-import { getDeck, incrementScoreForPlayer, updateCard } from './store/state.js';
+import { addPairForPlayer, getDeck, updateCard } from './store/state.js';
 import { findChildOfParent } from './utils.js';
 
+// return bool changePlayer
 export async function takeTurn(currentPlayer) {
 	console.log('takeTurn', { currentPlayer });
 
@@ -9,7 +10,7 @@ export async function takeTurn(currentPlayer) {
 	console.log({ firstCardValue, secondCardValue });
 
 	if (firstCardValue === secondCardValue) {
-		incrementScoreForPlayer(currentPlayer);
+		addPairForPlayer(currentPlayer, firstCardValue);
 		return false;
 	}
 

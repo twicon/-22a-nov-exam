@@ -1,4 +1,4 @@
-import { removeFlippedClass } from "../utils.js";
+import { removeFlippedClass } from '../utils.js';
 
 const state = {
 	// state hold all data that often change during the game
@@ -13,8 +13,14 @@ const state = {
 	deck: [],
 };
 
-export function incrementScoreForPlayer(number) {
+export function addPairForPlayer(number, pairValue) {
 	++state.score[`player${number}`];
+
+	for (const card of state.deck) {
+		if (card.value === pairValue) {
+			card.isPair = true;
+		}
+	}
 
 	// sends a custom event that the html element can respond to
 	document.querySelector('.scoreboard').dispatchEvent(
