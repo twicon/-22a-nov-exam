@@ -1,7 +1,7 @@
 .card {
 	display: inline-block;
 	width: 100px;
-	aspect-ratio: 1 / 1;
+	aspect-ratio: 1 / 1.4;
 	margin: 1rem;
 	perspective: 9999px;
 
@@ -15,6 +15,9 @@
 
 	&__front,
 	&__back {
+		border-radius: 10px;
+		overflow: hidden;
+		border: 2px solid grey;
 		position: absolute;
 		inset: 0;
 		backface-visibility: hidden;

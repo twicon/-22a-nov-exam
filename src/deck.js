@@ -30,7 +30,7 @@ function createDeck(deckBlueprint) {
 		// Create the front and back of the card as an <img> elements
 		const cardFront = document.createElement('img');
 		cardFront.classList.add('card__front');
-		cardFront.src = card.img; // Set the source of the front image
+		cardFront.src = card; // Set the source of the front image
 
 		const cardBack = document.createElement('img');
 		cardBack.classList.add('card__back');

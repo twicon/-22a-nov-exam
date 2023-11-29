@@ -1,10 +1,10 @@
 export const frontImagePaths = [
-	{ value: 1, img: 'images/bild1.webp' },
-	{ value: 2, img: 'images/bild2.webp' },
-	{ value: 3, img: 'images/bild3.webp' },
-	{ value: 4, img: 'images/bild4.webp' },
-	{ value: 5, img: 'images/bild5.webp' },
-	{ value: 6, img: 'images/bild6.webp' },
+    'images/bild1.webp',
+    'images/bild2.webp',
+    'images/bild3.webp',
+    'images/bild4.webp',
+    'images/bild5.webp',
+    'images/bild6.webp',
 ];
 
 export const backImagePaths = ['images/card.webp']; // Common backside image
