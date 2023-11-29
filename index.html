@@ -12,8 +12,15 @@
 <body>
 	<main>
 		<section class="scoreboard">
-			<span class="scoreboard__name-p1"></span><span class="scoreboard__score-p1">0</span>
-			<span class="scoreboard__name-p2"></span><span class="scoreboard__score-p2">0</span>
+			<div class="scoreboard__column">
+				<span class="scoreboard__score scoreboard__score-p1">0</span>
+				<span class="scoreboard__name-p1"></span>
+			</div>
+			<div class="scoreboard__column">VS</div>
+			<div class="scoreboard__column">
+				<span class="scoreboard__name-p2"></span>
+				<span class="scoreboard__score scoreboard__score-p2">0</span>
+			</div>
 		</section>
 		<section class="game-board"></section>
 	</main>

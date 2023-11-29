@@ -2,3 +2,8 @@
 	box-sizing: border-box;
 	margin: 0;
 }
+
+body {
+	background: hsla(172, 100%, 71%, 1);
+	background: linear-gradient(111deg, hsla(172, 100%, 71%, 1) 0%, hsla(230, 33%, 75%, 1) 71%, hsla(319, 74%, 64%, 1) 100%);
+}
