@@ -63,6 +63,7 @@ main {
   justify-content: space-between;
   padding: 1rem;
   width: 100%;
+  z-index: 1;
 }
 .scoreboard__column {
   align-items: center;
@@ -89,7 +90,12 @@ main {
   justify-content: center;
   margin: 4px 1rem 0;
   padding: 2rem 1rem;
+  transform: translateY(-100%);
+  transition: transform 1s ease-out 1s;
   width: calc(100% - 2rem);
+}
+.game-board--show {
+  transform: translateY(0);
 }
 
 .backdrop {

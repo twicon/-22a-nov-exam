@@ -9,6 +9,8 @@ export async function startGame() {
 	let currentPlayer = 1;
 	// let turnsCompleted = 0;
 
+	document.querySelector('.game-board').classList.add('game-board--show');
+
 	while (gameIsRunning) {
 		const changePlayer = await takeTurn(currentPlayer);
 
