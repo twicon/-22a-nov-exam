@@ -40,6 +40,26 @@
   transform: rotateY(180deg);
 }
 
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-form {
+  display: none;
+}
+
+.game-over {
+  display: none;
+}
+
 .scoreboard {
   font-size: 5rem;
 }

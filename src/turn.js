@@ -19,7 +19,7 @@ export async function takeTurn(currentPlayer) {
 
 const selectCard = () =>
 	new Promise(function (resolve) {
-		const deckElement = document.querySelector('main');
+		const deckElement = document.querySelector('.game-board');
 		const deck = getDeck();
 		console.log({ deck });
 

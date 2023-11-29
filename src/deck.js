@@ -63,7 +63,7 @@ function createDeck(deckBlueprint, backImagePath) {
 }
 
 export function paintCardsOnBoard(deck) {
-	const gameBoard = document.querySelector('main');
+	const gameBoard = document.querySelector('.game-board');
 
 	for (const card of deck) {
 		gameBoard.appendChild(card.cardElement);

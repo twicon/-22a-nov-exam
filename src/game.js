@@ -1,3 +1,4 @@
+import { openGameOver } from './game-over.js';
 import { checkForNotFoundPairs, flipBackCards } from './store/state.js';
 import { takeTurn } from './turn.js';
 
@@ -19,4 +20,5 @@ export async function startGame() {
 	}
 
 	console.log('gameOver'); // check who wins
+	openGameOver();
 }
