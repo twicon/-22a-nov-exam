@@ -64,6 +64,8 @@ function createDeck(deckBlueprint, backImagePath) {
 
 export function paintCardsOnBoard(deck) {
 	const gameBoard = document.querySelector('.game-board');
+	
+	gameBoard.replaceChildren(); // clear old cards
 
 	for (const card of deck) {
 		card.cardElement.style.transform = randomTranslate();
