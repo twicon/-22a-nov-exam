@@ -1,6 +1,6 @@
 import { backImagePaths, frontImagePaths } from './store/images.js';
 import { resetDeckState } from './store/state.js';
-import { shuffleArray } from './utils.js';
+import { randomTranslate, shuffleArray } from './utils.js';
 
 export function setupDeck() {
 	// create array of cards with pairs in random order
@@ -66,6 +66,7 @@ export function paintCardsOnBoard(deck) {
 	const gameBoard = document.querySelector('.game-board');
 
 	for (const card of deck) {
+		card.cardElement.style.transform = randomTranslate();
 		gameBoard.appendChild(card.cardElement);
 	}
 }

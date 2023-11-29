@@ -33,3 +33,11 @@ export function removeFlippedClass(element, isFirstCard) {
 		);
 	});
 }
+
+export function randomTranslate() {
+	const randomX = Math.floor(Math.random() * 7 - 3);
+	const randomY = Math.floor(Math.random() * 7 - 3);
+	const randomRotate = Math.floor(Math.random() * 7 - 3);
+
+	return `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
+}
