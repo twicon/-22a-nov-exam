@@ -35,10 +35,12 @@ export function addPairForPlayer(number, pairValue) {
 export function updatePlayerNames(player1, player2) {
 	state.names.player1 = player1;
 	state.names.player2 = player2;
+	state.score.player1 = 0;
+	state.score.player2 = 0;
 
 	document.querySelector('.scoreboard').dispatchEvent(
 		new CustomEvent('scoreboard', {
-			detail: { names: state.names },
+			detail: { names: state.names, score: { player1: 0, player2: 0 } },
 		})
 	);
 }

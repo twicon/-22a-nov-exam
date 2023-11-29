@@ -3,12 +3,13 @@ export function setupScoreboardListener() {
 
 	// if score in state changes the html elements will update to reflect this
 	scoreElement.addEventListener('scoreboard', function (e) {
-		console.log({scoreboardUpdate: e.detail})
-		if (e.detail.score?.player1) { // only update elements if needed
+		console.log({ scoreboardUpdate: e.detail });
+		if (!isNaN(e.detail.score?.player1)) {
+			// only update elements if needed
 			scoreElement.querySelector('.scoreboard__score-p1').innerText =
 				e.detail.score.player1;
 		}
-		if (e.detail.score?.player2) {
+		if (!isNaN(e.detail.score?.player2)) {
 			scoreElement.querySelector('.scoreboard__score-p2').innerText =
 				e.detail.score.player2;
 		}
