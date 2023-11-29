@@ -4,10 +4,10 @@ import { shuffleArray } from './utils.js';
 
 export function setupDeck() {
 	// create array of cards with pairs in random order
-	const deckBlueprint = createDeckBlueprint();
+	const deckBlueprint = createDeckBlueprint(frontImagePaths);
 
 	// create HTML elements for the cards
-	const deck = createDeck(deckBlueprint);
+	const deck = createDeck(deckBlueprint, backImagePaths[0]);
 	console.log('setupDeck', deck);
 
 	paintCardsOnBoard(deck); // show the cards in the browser
@@ -15,26 +15,30 @@ export function setupDeck() {
 	resetDeckState(deck); // add new deck to state
 }
 
-function createDeckBlueprint(frontImgPaths, backImg) {
-	// 1. Lägg till values på images. så 'images/bild1.webp' blir {value: 1, img: 'images/bild2.webp'}
+function createDeckBlueprint(frontImagePaths) {
+	const imagesWithValues = frontImagePaths.map(function (image, i) {
+		return { value: i + 1, image };
+	});
 
-	const deck = frontImagePaths.concat(frontImagePaths);
+	console.log({ imagesWithValues, frontImagePaths });
+
+	const deck = imagesWithValues.concat(imagesWithValues);
 
 	return shuffleArray(deck);
 }
 
-function createDeck(deckBlueprint) {
+function createDeck(deckBlueprint, backImagePath) {
 	const deck = [];
 
 	for (const card of deckBlueprint) {
 		// Create the front and back of the card as an <img> elements
 		const cardFront = document.createElement('img');
 		cardFront.classList.add('card__front');
-		cardFront.src = card; // Set the source of the front image
+		cardFront.src = card.image; // Set the source of the front image
 
 		const cardBack = document.createElement('img');
 		cardBack.classList.add('card__back');
-		cardBack.src = backImagePaths[0]; // Set the source of the back image
+		cardBack.src = backImagePath; // Set the source of the back image
 
 		// Create a container that we can flip to display either front or back side
 		const cardContainer = document.createElement('div');
