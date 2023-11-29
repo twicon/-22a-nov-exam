@@ -8,6 +8,7 @@ export function setupDeck() {
 
 	// create HTML elements for the cards
 	const deck = createDeck(deckBlueprint);
+	console.log('setupDeck', deck);
 
 	paintCardsOnBoard(deck); // show the cards in the browser
 
@@ -46,7 +47,12 @@ function createDeck(deckBlueprint) {
 		cardElement.classList.add('card');
 		cardElement.appendChild(cardContainer);
 
-		deck.push({ cardElement, isPair: false, isFlipped: false });
+		deck.push({
+			cardElement,
+			value: card.value,
+			isPair: false,
+			isFlipped: false,
+		});
 	}
 
 	return deck;

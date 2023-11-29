@@ -1,5 +1,7 @@
-import { getDeck, incrementScoreForPlayer, updateDeck } from './store/state.js';
+import { addPairForPlayer, getDeck, updateCard } from './store/state.js';
+import { findChildOfParent } from './utils.js';
 
+// return bool changePlayer
 export async function takeTurn(currentPlayer) {
 	console.log('takeTurn', { currentPlayer });
 
@@ -8,8 +10,11 @@ export async function takeTurn(currentPlayer) {
 	console.log({ firstCardValue, secondCardValue });
 
 	if (firstCardValue === secondCardValue) {
-		incrementScoreForPlayer(currentPlayer); // TODO: add logic for pairs
+		addPairForPlayer(currentPlayer, firstCardValue);
+		return false;
 	}
+
+	return true;
 }
 
 const selectCard = () =>
@@ -19,7 +24,7 @@ const selectCard = () =>
 		console.log({ deck });
 
 		function flipListener(e) {
-			const clickedCard = e.target.parentElement.parentElement; // TODO: make dynamic
+			const clickedCard = findChildOfParent(e.target, deckElement);
 
 			// find index of card clicked
 			const clickedIndex = [...deckElement.children].indexOf(clickedCard);
@@ -27,8 +32,7 @@ const selectCard = () =>
 
 			// only flip cards with back side up
 			if (clickedIndex !== -1 && !deck[clickedIndex].isFlipped) {
-				updateDeck(clickedIndex, { isFlipped: true });
-				deck[clickedIndex].cardElement.classList.add('card--flipped'); // TODO: move
+				updateCard(clickedIndex, { isFlipped: true });
 
 				// clean up old listener as new listener is added every time function runs
 				deckElement.removeEventListener('click', flipListener);

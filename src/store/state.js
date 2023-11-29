@@ -1,3 +1,5 @@
+import { removeFlippedClass } from '../utils.js';
+
 const state = {
 	// state hold all data that often change during the game
 	score: {
@@ -8,11 +10,17 @@ const state = {
 		player1: '',
 		player2: '',
 	},
-	deck: [], // TODO: cardElements do not need to be stored in state
+	deck: [],
 };
 
-export function incrementScoreForPlayer(number) {
+export function addPairForPlayer(number, pairValue) {
 	++state.score[`player${number}`];
+
+	for (const card of state.deck) {
+		if (card.value === pairValue) {
+			card.isPair = true;
+		}
+	}
 
 	// sends a custom event that the html element can respond to
 	document.querySelector('.scoreboard').dispatchEvent(
@@ -43,6 +51,30 @@ export function resetDeckState(newDeck) {
 	state.deck = newDeck;
 }
 
-export function updateDeck(index, newData) {
+export function updateCard(index, newData) {
 	state.deck[index] = { ...state.deck[index], ...newData };
+
+	if (newData.isFlipped) {
+		state.deck[index].cardElement.classList.add('card--flipped'); // TODO: move
+	}
+}
+
+export async function flipBackCards() {
+	let isFirstCard = true;
+
+	for (const card of state.deck) {
+		// check for isFlipped so we don't add timeouts that don't do anything
+		if (card.isFlipped && !card.isPair) {
+			await removeFlippedClass(card.cardElement, isFirstCard);
+			card.isFlipped = false;
+			isFirstCard = false;
+		}
+	}
+}
+
+export function checkForNotFoundPairs() {
+	for (const card of state.deck) {
+		if (!card.isPair) return true;
+	}
+	return false;
 }
