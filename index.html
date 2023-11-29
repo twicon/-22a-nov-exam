@@ -10,17 +10,23 @@
 </head>
 
 <body>
-	<form id="playerForm">
-		<input type="text" id="player1" placeholder="Player 1 name" value="Yves">
-		<input type="text" id="player2" placeholder="Player 2 name" value="Gertrude">
-		<button type="submit">Start game!</button>
-	</form>
-
-	<header class="scoreboard">
-		<span class="scoreboard__name-p1"></span><span class="scoreboard__score-p1">0</span>
-		<span class="scoreboard__name-p2"></span><span class="scoreboard__score-p2">0</span>
-	</header>
-	<main></main>
+	<main>
+		<section class="scoreboard">
+			<span class="scoreboard__name-p1"></span><span class="scoreboard__score-p1">0</span>
+			<span class="scoreboard__name-p2"></span><span class="scoreboard__score-p2">0</span>
+		</section>
+		<section class="game-board"></section>
+	</main>
+	<section class="backdrop">
+		<form class="player-form">
+			<input type="text" id="player1" placeholder="Player 1 name" value="Yves">
+			<input type="text" id="player2" placeholder="Player 2 name" value="Gertrude">
+			<button type="submit">Start game!</button>
+		</form>
+		<article class="game-over">
+			YOU ARE WIENER!
+		</article>
+	</section>
 </body>
 
 </html>
