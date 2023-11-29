@@ -71,3 +71,10 @@ export async function flipBackCards() {
 		}
 	}
 }
+
+export function checkForNotFoundPairs() {
+	for (const card of state.deck) {
+		if (!card.isPair) return true;
+	}
+	return false;
+}
