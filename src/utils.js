@@ -1,9 +1,15 @@
 export function shuffleArray(array) {
-	for (let i = array.length - 1; i > 0; i--) {
+	// Return a new shuffled copy while leaving the original intact
+	const newAry = [...array];
+
+	// Fisher–Yates shuffle
+	for (let i = newAry.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]]; // Swap values at index i and index j
+
+		// Swap values at index i and index j
+		[newAry[i], newAry[j]] = [newAry[j], newAry[i]];
 	}
-	return array;
+	return newAry;
 }
 
 // recursive function to find child of parent when you might have a (grand)grandchild
