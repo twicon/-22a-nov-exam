@@ -34,6 +34,12 @@ main {
 		place-items: center;
 		width: 65px;
 	}
+
+	&__name {
+		&--current-player {
+			text-decoration: underline;
+		}
+	}
 }
 
 .game-board {

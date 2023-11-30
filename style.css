@@ -79,6 +79,9 @@ main {
   place-items: center;
   width: 65px;
 }
+.scoreboard__name--current-player {
+  text-decoration: underline;
+}
 
 .game-board {
   align-items: flex-start;

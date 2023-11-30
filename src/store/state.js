@@ -11,6 +11,7 @@ const state = {
 		player2: '',
 	},
 	deck: [],
+	currentPlayer: 0,
 };
 
 export function addPairForPlayer(number, pairValue) {
@@ -83,4 +84,14 @@ export function checkForNotFoundPairs() {
 		if (!card.isPair) return true;
 	}
 	return false;
+}
+
+export function changeCurrentPlayer() {
+	state.currentPlayer = (state.currentPlayer % 2) + 1;
+
+	document.querySelector('.scoreboard').dispatchEvent(
+		new CustomEvent('scoreboard', {
+			detail: { currentPlayer: state.currentPlayer },
+		})
+	);
 }
