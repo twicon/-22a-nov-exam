@@ -2,9 +2,9 @@ import { backImagePaths, frontImagePaths } from './store/images.js';
 import { resetDeckState } from './store/state.js';
 import { randomTranslate, shuffleArray } from './utils.js';
 
-export function setupDeck() {
+export function setupDeck(pairs = 12) {
 	// create array of cards with pairs in random order
-	const deckBlueprint = createDeckBlueprint(frontImagePaths);
+	const deckBlueprint = createDeckBlueprint(frontImagePaths, pairs);
 
 	// create HTML elements for the cards
 	const deck = createDeck(deckBlueprint, backImagePaths[0]);
@@ -15,8 +15,10 @@ export function setupDeck() {
 	resetDeckState(deck); // add new deck to state
 }
 
-function createDeckBlueprint(frontImagePaths) {
-	const imagesWithValues = frontImagePaths.map(function (image, i) {
+function createDeckBlueprint(frontImagePaths, pairs) {
+	const randomImages = shuffleArray(frontImagePaths).slice(0, pairs);
+
+	const imagesWithValues = randomImages.map(function (image, i) {
 		return { value: i + 1, image };
 	});
 
