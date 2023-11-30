@@ -96,7 +96,11 @@ export async function flipBackCards() {
 		// check for isFlipped so we don't add timeouts that don't do anything
 		if (card.isFlipped && !card.isPair) {
 			await removeFlippedClass(card.cardElement, isFirstCard);
-			activateAntiCheat(card.frontElement, card.containerElement);
+			activateAntiCheat(
+				card.frontElement,
+				card.containerElement,
+				card.isFlipped
+			);
 			card.isFlipped = false;
 			isFirstCard = false;
 		}

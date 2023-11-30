@@ -42,8 +42,11 @@ export function randomTranslate() {
 	return `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
 }
 
-export function activateAntiCheat(frontElement, containerElement) {
+export function activateAntiCheat(frontElement, containerElement, isFlipped) {
 	setTimeout(() => {
-		containerElement.removeChild(frontElement);
+		// cancel anti cheat in case a card is flipped again before fully flipping back
+		if (!isFlipped) {
+			containerElement.removeChild(frontElement);
+		}
 	}, 2000);
 }
