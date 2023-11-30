@@ -16,5 +16,6 @@ export function setLocalStorageNames(player1, player2) {
 }
 
 export function setLocalStorageHighScore(highScore) {
+	console.log('highScore', highScore);
 	localStorage.setItem('highscore', JSON.stringify(highScore));
 }

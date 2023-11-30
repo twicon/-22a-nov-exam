@@ -1,5 +1,5 @@
 import { openGameOptions } from './new-game.js';
-import { getNames, getScore } from './store/state.js';
+import { getNames, getScore, updateHighScoreList } from './store/state.js';
 
 export function openGameOver() {
 	const backdrop = document.querySelector('.backdrop');
@@ -11,30 +11,39 @@ export function openGameOver() {
 	backdrop.style.display = 'flex';
 	gameOverElement.style.display = 'flex';
 
-	msgElement.innerText = createWinMessage();
+	const winnerData = determineWinner();
+	msgElement.innerText = createWinMessage(winnerData);
+
+	const highScore = updateHighScoreList(winnerData);
 
 	newGameBtnElement.addEventListener(
 		'click',
 		function () {
-			backdrop.style.display = 'flex';
-			gameOverElement.style.display = 'flex';
+			backdrop.style.display = 'none';
+			gameOverElement.style.display = 'none';
 			openGameOptions();
 		},
 		{ once: true }
 	);
 }
 
-function createWinMessage() {
+function determineWinner() {
 	const names = getNames();
 	const score = getScore();
 
 	if (score.player1 === score.player2) {
-		return "It's a tie!";
+		return { isTie: true };
 	}
 
 	const winner = score.player1 > score.player2 ? 'player1' : 'player2';
 
-	return `With ${score[winner]} points, ${names[
-		winner
-	].toUpperCase()} is the winner!`;
+	return { isTie: false, winner: names[winner], score: score[winner] };
+}
+
+function createWinMessage({ isTie, winner, score }) {
+	if (isTie) {
+		return "It's a tie!";
+	}
+
+	return `With ${score} points, ${winner.toUpperCase()} is the winner!`;
 }

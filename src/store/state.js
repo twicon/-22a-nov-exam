@@ -1,5 +1,9 @@
 import { activateAntiCheat, removeFlippedClass } from '../utils.js';
-import { getLocalStorageState, setLocalStorageNames } from './local-storage.js';
+import {
+	getLocalStorageState,
+	setLocalStorageHighScore,
+	setLocalStorageNames,
+} from './local-storage.js';
 
 const state = {
 	// state hold all data that often change during the game
@@ -117,4 +121,21 @@ export function changeCurrentPlayer() {
 	);
 
 	return upcomingPlayer;
+}
+
+export function updateHighScoreList({ isTie, winner }) {
+	console.log('updateHighScore', winner);
+	if (isTie) {
+		return state.highScore;
+	}
+
+	if (state.highScore[winner]) {
+		++state.highScore[winner];
+	} else {
+		state.highScore[winner] = 1;
+	}
+
+	setLocalStorageHighScore(state.highScore);
+
+	return state.highScore;
 }
