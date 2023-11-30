@@ -16,6 +16,8 @@ export function openGameOver() {
 
 	const highScore = updateHighScoreList(winnerData);
 
+	createHighScoreList(highScore);
+
 	newGameBtnElement.addEventListener(
 		'click',
 		function () {
@@ -46,4 +48,20 @@ function createWinMessage({ isTie, winner, score }) {
 	}
 
 	return `With ${score} points, ${winner.toUpperCase()} is the winner!`;
+}
+
+function createHighScoreList(highScore) {
+	const highScoreElement = document.querySelector('.high-score');
+
+	const highScoreArray = Object.keys(highScore).sort(
+		(a, b) => highScore[b] - highScore[a]
+	);
+	console.log(highScoreArray);
+
+	for (const player of highScoreArray) {
+		const li = document.createElement('li');
+		li.classList.add('high-score__item');
+		li.innerText = `${player} - ${highScore[player]} wins`;
+		highScoreElement.appendChild(li);
+	}
 }
