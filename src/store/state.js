@@ -58,6 +58,10 @@ export function getNames() {
 	return { player1: state.names.player1, player2: state.names.player2 };
 }
 
+export function getScore() {
+	return { player1: state.score.player1, player2: state.score.player2 };
+}
+
 export function resetDeckState(newDeck) {
 	state.deck = newDeck;
 }
