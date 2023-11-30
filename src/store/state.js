@@ -1,4 +1,5 @@
 import { activateAntiCheat, removeFlippedClass } from '../utils.js';
+import { getLocalStorageState, setLocalStorageNames } from './local-storage.js';
 
 const state = {
 	// state hold all data that often change during the game
@@ -12,6 +13,7 @@ const state = {
 	},
 	deck: [],
 	currentPlayer: 0,
+	highScore: {},
 };
 
 export function addPairForPlayer(number, pairValue) {
@@ -44,14 +46,28 @@ export function updatePlayerNames(player1, player2) {
 			detail: { names: state.names, score: { player1: 0, player2: 0 } },
 		})
 	);
+
+	setLocalStorageNames(player1, player2);
 }
 
 export function getDeck() {
 	return state.deck;
 }
 
+export function getNames() {
+	return { player1: state.names.player1, player2: state.names.player2 };
+}
+
 export function resetDeckState(newDeck) {
 	state.deck = newDeck;
+}
+
+export function setInitialState() {
+	const { nameP1, nameP2, highScore } = getLocalStorageState();
+
+	state.names.player1 = nameP1;
+	state.names.player2 = nameP2;
+	state.highScore = highScore;
 }
 
 export function updateCard(index, newData) {

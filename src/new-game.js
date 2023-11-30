@@ -1,22 +1,28 @@
 import { setupDeck } from './deck.js';
 import { startGame } from './game.js';
-import { updatePlayerNames } from './store/state.js';
+import { getNames, updatePlayerNames } from './store/state.js';
 
 export function openGameOptions() {
-	const backdrop = document.querySelector('.backdrop');
-	const playerForm = document.querySelector('.player-form');
+	const backdropElement = document.querySelector('.backdrop');
+	const playerFormElement = document.querySelector('.player-form');
+	const player1Element = playerFormElement.querySelector('#player1');
+	const player2Element = playerFormElement.querySelector('#player2');
 
-	backdrop.style.display = 'flex';
-	playerForm.style.display = 'flex';
+	const names = getNames();
 
-	playerForm.addEventListener('submit', function (event) {
+	playerFormElement.style.display = 'flex';
+	backdropElement.style.display = 'flex';
+	player1Element.value = names.player1;
+	player2Element.value = names.player2;
+
+	playerFormElement.addEventListener('submit', function (event) {
 		event.preventDefault();
-		const player1 = playerForm.querySelector('#player1').value;
-		const player2 = playerForm.querySelector('#player2').value;
+		const player1 = player1Element.value;
+		const player2 = player2Element.value;
 
 		if (player1 != '' && player2 != '') {
-			backdrop.style.display = 'none';
-			playerForm.style.display = 'none';
+			backdropElement.style.display = 'none';
+			playerFormElement.style.display = 'none';
 			updatePlayerNames(player1, player2);
 			setupDeck();
 			startGame();
