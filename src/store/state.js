@@ -87,11 +87,14 @@ export function checkForNotFoundPairs() {
 }
 
 export function changeCurrentPlayer() {
-	state.currentPlayer = (state.currentPlayer % 2) + 1;
+	const upcomingPlayer = (state.currentPlayer % 2) + 1;
+	state.currentPlayer = upcomingPlayer;
 
 	document.querySelector('.scoreboard').dispatchEvent(
 		new CustomEvent('scoreboard', {
 			detail: { currentPlayer: state.currentPlayer },
 		})
 	);
+
+	return upcomingPlayer;
 }
