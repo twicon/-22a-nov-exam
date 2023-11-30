@@ -43,8 +43,7 @@ function createDeck(deckBlueprint, backImagePath) {
 		// Create a container that we can flip to display either front or back side
 		const cardContainer = document.createElement('div');
 		cardContainer.classList.add('card__container');
-		cardContainer.appendChild(cardFront);
-		cardContainer.appendChild(cardBack);
+		cardContainer.appendChild(cardBack); // only set back to prevent cheating
 
 		// Create the card element that will be used to position the cards
 		const cardElement = document.createElement('article');
@@ -53,6 +52,8 @@ function createDeck(deckBlueprint, backImagePath) {
 
 		deck.push({
 			cardElement,
+			frontElement: cardFront,
+			containerElement: cardContainer,
 			value: card.value,
 			isPair: false,
 			isFlipped: false,
@@ -64,7 +65,7 @@ function createDeck(deckBlueprint, backImagePath) {
 
 export function paintCardsOnBoard(deck) {
 	const gameBoard = document.querySelector('.game-board');
-	
+
 	gameBoard.replaceChildren(); // clear old cards
 
 	for (const card of deck) {

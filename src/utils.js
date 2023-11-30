@@ -41,3 +41,9 @@ export function randomTranslate() {
 
 	return `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
 }
+
+export function activateAntiCheat(frontElement, containerElement) {
+	setTimeout(() => {
+		containerElement.removeChild(frontElement);
+	}, 2000);
+}

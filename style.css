@@ -35,10 +35,10 @@ body {
 .card__front {
   background-color: darkblue;
   color: white;
+  transform: rotateY(180deg);
 }
 .card__back {
   background-color: aqua;
-  transform: rotateY(180deg);
 }
 .card--flipped .card__container {
   transform: rotateY(180deg);

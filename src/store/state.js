@@ -1,4 +1,4 @@
-import { removeFlippedClass } from '../utils.js';
+import { activateAntiCheat, removeFlippedClass } from '../utils.js';
 
 const state = {
 	// state hold all data that often change during the game
@@ -54,10 +54,13 @@ export function resetDeckState(newDeck) {
 }
 
 export function updateCard(index, newData) {
-	state.deck[index] = { ...state.deck[index], ...newData };
+	const cardToUpdate = state.deck[index];
+	state.deck[index] = { ...cardToUpdate, ...newData };
 
 	if (newData.isFlipped) {
-		state.deck[index].cardElement.classList.add('card--flipped'); // TODO: move
+		// only add front side when flipping to prevent cheating
+		cardToUpdate.containerElement.appendChild(cardToUpdate.frontElement);
+		cardToUpdate.cardElement.classList.add('card--flipped'); // TODO: move
 	}
 }
 
@@ -68,6 +71,7 @@ export async function flipBackCards() {
 		// check for isFlipped so we don't add timeouts that don't do anything
 		if (card.isFlipped && !card.isPair) {
 			await removeFlippedClass(card.cardElement, isFirstCard);
+			activateAntiCheat(card.frontElement, card.containerElement);
 			card.isFlipped = false;
 			isFirstCard = false;
 		}
