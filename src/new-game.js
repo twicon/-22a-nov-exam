@@ -9,18 +9,19 @@ export function openGameOptions() {
 	const player2Element = playerFormElement.querySelector('#player2');
 	const errorMsgElement = document.querySelector('.error-msg');
 
-	const names = getNames();
+	const savedNames = getNames();
 
 	newGameDrawer.classList.add('drawer--show');
-	player1Element.value = names.player1;
-	player2Element.value = names.player2;
+	player1Element.value = savedNames.player1;
+	player2Element.value = savedNames.player2;
 
-	playerFormElement.addEventListener('submit', function (event) {
+	function newGameHandler(event) {
 		event.preventDefault();
 		const player1 = player1Element.value;
 		const player2 = player2Element.value;
 
 		if (player1 != '' && player2 != '') {
+			playerFormElement.removeEventListener('submit', newGameHandler);
 			newGameDrawer.classList.remove('drawer--show');
 			errorMsgElement.classList.remove('error-msg--show');
 			updatePlayerNames(player1, player2);
@@ -29,5 +30,7 @@ export function openGameOptions() {
 		} else {
 			errorMsgElement.classList.add('error-msg--show');
 		}
-	});
+	}
+
+	playerFormElement.addEventListener('submit', newGameHandler);
 }
