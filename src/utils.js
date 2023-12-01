@@ -33,3 +33,20 @@ export function removeFlippedClass(element, isFirstCard) {
 		);
 	});
 }
+
+export function randomTranslate() {
+	const randomX = Math.floor(Math.random() * 7 - 3);
+	const randomY = Math.floor(Math.random() * 7 - 3);
+	const randomRotate = Math.floor(Math.random() * 7 - 3);
+
+	return `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
+}
+
+export function activateAntiCheat(frontElement, containerElement, isFlipped) {
+	setTimeout(() => {
+		// cancel anti cheat in case a card is flipped again before fully flipping back
+		if (!isFlipped) {
+			containerElement.removeChild(frontElement);
+		}
+	}, 2000);
+}

@@ -12,20 +12,28 @@
 <body>
 	<main>
 		<section class="scoreboard">
-			<span class="scoreboard__name-p1"></span><span class="scoreboard__score-p1">0</span>
-			<span class="scoreboard__name-p2"></span><span class="scoreboard__score-p2">0</span>
+			<div class="scoreboard__column">
+				<span class="scoreboard__score scoreboard__score-p1"></span>
+				<span class="scoreboard__name-p1"></span>
+			</div>
+			<div class="scoreboard__column">VS</div>
+			<div class="scoreboard__column">
+				<span class="scoreboard__name-p2"></span>
+				<span class="scoreboard__score scoreboard__score-p2"></span>
+			</div>
 		</section>
 		<section class="game-board"></section>
 	</main>
 	<section class="backdrop">
 		<form class="player-form">
-			<input type="text" id="player1" placeholder="Player 1 name" value="Yves">
-			<input type="text" id="player2" placeholder="Player 2 name" value="Gertrude">
+			<input type="text" id="player1" placeholder="Player 1 name">
+			<input type="text" id="player2" placeholder="Player 2 name">
 			<button type="submit">Start game!</button>
 		</form>
 		<article class="game-over">
-			YOU ARE WIENER!
-			<button type="submit" class="newGameButton">New game!</button>
+			<h1 class="game-over__msg"></h1>
+			<button class="game-over__button">New Game</button>
+			<ol class="high-score"></ol>
 		</article>
 	</section>
 </body>

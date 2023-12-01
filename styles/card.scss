@@ -2,7 +2,6 @@
 	display: inline-block;
 	width: 100px;
 	aspect-ratio: 1 / 1.4;
-	margin: 1rem;
 	perspective: 9999px;
 
 	&__container {
@@ -29,11 +28,11 @@
 	&__front {
 		background-color: darkblue;
 		color: white;
+		transform: rotateY(180deg);
 	}
 
 	&__back {
 		background-color: aqua;
-		transform: rotateY(180deg);
 	}
 
 	&--flipped &__container {

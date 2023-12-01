@@ -1,10 +1,10 @@
 import { backImagePaths, frontImagePaths } from './store/images.js';
 import { resetDeckState } from './store/state.js';
-import { shuffleArray } from './utils.js';
+import { randomTranslate, shuffleArray } from './utils.js';
 
-export function setupDeck() {
+export function setupDeck(pairs = 12) {
 	// create array of cards with pairs in random order
-	const deckBlueprint = createDeckBlueprint(frontImagePaths);
+	const deckBlueprint = createDeckBlueprint(frontImagePaths, pairs);
 
 	// create HTML elements for the cards
 	const deck = createDeck(deckBlueprint, backImagePaths[0]);
@@ -15,8 +15,10 @@ export function setupDeck() {
 	resetDeckState(deck); // add new deck to state
 }
 
-function createDeckBlueprint(frontImagePaths) {
-	const imagesWithValues = frontImagePaths.map(function (image, i) {
+function createDeckBlueprint(frontImagePaths, pairs) {
+	const randomImages = shuffleArray(frontImagePaths).slice(0, pairs);
+
+	const imagesWithValues = randomImages.map(function (image, i) {
 		return { value: i + 1, image };
 	});
 
@@ -43,8 +45,7 @@ function createDeck(deckBlueprint, backImagePath) {
 		// Create a container that we can flip to display either front or back side
 		const cardContainer = document.createElement('div');
 		cardContainer.classList.add('card__container');
-		cardContainer.appendChild(cardFront);
-		cardContainer.appendChild(cardBack);
+		cardContainer.appendChild(cardBack); // only set back to prevent cheating
 
 		// Create the card element that will be used to position the cards
 		const cardElement = document.createElement('article');
@@ -53,6 +54,8 @@ function createDeck(deckBlueprint, backImagePath) {
 
 		deck.push({
 			cardElement,
+			frontElement: cardFront,
+			containerElement: cardContainer,
 			value: card.value,
 			isPair: false,
 			isFlipped: false,
@@ -65,7 +68,10 @@ function createDeck(deckBlueprint, backImagePath) {
 export function paintCardsOnBoard(deck) {
 	const gameBoard = document.querySelector('.game-board');
 
+	gameBoard.replaceChildren(); // clear old cards
+
 	for (const card of deck) {
+		card.cardElement.style.transform = randomTranslate();
 		gameBoard.appendChild(card.cardElement);
 	}
 }
