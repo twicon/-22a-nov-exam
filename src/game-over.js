@@ -49,6 +49,7 @@ function createWinMessage({ isTie, winner, score }) {
 
 function createHighScoreList(highScore) {
 	const highScoreElement = document.querySelector('.high-score');
+	highScoreElement.replaceChildren(); // avoid duplicates
 
 	const highScoreArray = Object.keys(highScore).sort(
 		(a, b) => highScore[b] - highScore[a]
