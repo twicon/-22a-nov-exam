@@ -54,7 +54,6 @@ function createHighScoreList(highScore) {
 	const highScoreArray = Object.keys(highScore).sort(
 		(a, b) => highScore[b] - highScore[a]
 	);
-	console.log(highScoreArray);
 
 	for (const player of highScoreArray) {
 		const li = document.createElement('li');

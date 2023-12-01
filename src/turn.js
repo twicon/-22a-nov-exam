@@ -3,11 +3,8 @@ import { findChildOfParent } from './utils.js';
 
 // return bool changePlayer
 export async function takeTurn(currentPlayer) {
-	console.log('takeTurn', { currentPlayer });
-
 	const firstCardValue = await selectCard();
 	const secondCardValue = await selectCard();
-	console.log({ firstCardValue, secondCardValue });
 
 	if (firstCardValue === secondCardValue) {
 		addPairForPlayer(currentPlayer, firstCardValue);
@@ -21,14 +18,12 @@ const selectCard = () =>
 	new Promise(function (resolve) {
 		const deckElement = document.querySelector('.game-board');
 		const deck = getDeck();
-		console.log({ deck });
 
 		function flipListener(e) {
 			const clickedCard = findChildOfParent(e.target, deckElement);
 
 			// find index of card clicked
 			const clickedIndex = [...deckElement.children].indexOf(clickedCard);
-			console.log({ clickedCard, e, deckElement, clickedIndex });
 
 			// only flip cards with back side up
 			if (clickedIndex !== -1 && !deck[clickedIndex].isFlipped) {
