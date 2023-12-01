@@ -1,12 +1,10 @@
 export function openGameOver() {
 	const backdrop = document.querySelector('.backdrop');
 	const gameOver = document.querySelector('.game-over');
+	const newGameButton = document.querySelector('.newGameButton');
 
 	backdrop.style.display = 'none';
 	gameOver.style.display = 'none';
 
-	// add button with click event listener
-	// on click:
-	// 	stop showing game over screen
-	// 	open new game screen
+	newGameButton.addEventListener("click", function() { }, { once: true });
 }
