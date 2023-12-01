@@ -54,7 +54,7 @@ main {
 	margin: 4px 1rem 0;
 	padding: 2rem 1rem;
 	transform: translateY(-120%);
-	transition: transform 1s ease-out 1s;
+	transition: transform 1s ease-in-out 1s;
 	width: calc(100% - 2rem);
 
 	&--show {

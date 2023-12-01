@@ -7,13 +7,12 @@ import {
 import { takeTurn } from './turn.js';
 
 export async function startGame() {
-	// placeholder function
-	console.log('game started');
+	const gameBoardElement = document.querySelector('.game-board');
+	
 	let gameIsRunning = true;
 	let currentPlayer = changeCurrentPlayer();
-	// let turnsCompleted = 0;
 
-	document.querySelector('.game-board').classList.add('game-board--show');
+	gameBoardElement.classList.add('game-board--show');
 
 	while (gameIsRunning) {
 		const changePlayer = await takeTurn(currentPlayer);
@@ -26,6 +25,6 @@ export async function startGame() {
 		gameIsRunning = checkForNotFoundPairs(); // stop playing if no pairs are left to find
 	}
 
-	console.log('gameOver'); // check who wins
+	gameBoardElement.classList.remove('game-board--show');
 	openGameOver();
 }

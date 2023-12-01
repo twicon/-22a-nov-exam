@@ -21,7 +21,6 @@ export function openGameOver() {
 	newGameBtnElement.addEventListener(
 		'click',
 		function () {
-			backdrop.style.display = 'none';
 			gameOverElement.style.display = 'none';
 			openGameOptions();
 		},
