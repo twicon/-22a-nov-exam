@@ -2,7 +2,6 @@
 	align-items: center;
 	display: flex;
 	flex-direction: column;
-	height: 100dvh;
 	justify-content: flex-start;
 	margin: 0 auto;
 	position: relative;
@@ -40,26 +39,5 @@
 		&--current-player {
 			text-decoration: underline;
 		}
-	}
-}
-
-.drawer {
-	align-items: flex-start;
-	background-color: rgb(255 255 255 / 50%);
-	border-radius: 0 0 10px 10px;
-	box-shadow: 0 4px 2px 2px rgb(0 0 0 / 50%);
-	display: flex;
-	flex-wrap: wrap;
-	gap: 1rem;
-	justify-content: center;
-	margin: 0 1rem;
-	padding: 150px 1rem 2rem;
-	position: absolute;
-	transform: translateY(-120%);
-	transition: transform 1s ease-in-out 1s;
-	width: calc(100% - 2rem);
-
-	&--show {
-		transform: translateY(0);
 	}
 }
