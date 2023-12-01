@@ -26,9 +26,11 @@
 			<form class="new-game__form">
 				<h1 class="new-game__header">MEMORY (and cats)!!!</h1>
 				<label for="player1">Player 1</label>
-				<input type="text" id="player1" placeholder="Name">
+				<input type="text" name="player1" id="player1" placeholder="Name" required>
 				<label for="player2">Player 2</label>
-				<input type="text" id="player2" placeholder="Name">
+				<input type="text" name="player2" id="player2" placeholder="Name" required>
+				<label for="pairs">Deck size (in pairs)</label>
+				<input type="number" name="pairs" id="pairs" value="12" min="12" max="20">
 				<button type="submit">Start game!</button>
 				<div class="error-msg">Please enter names</div>
 			</form>

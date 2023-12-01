@@ -7,6 +7,7 @@ export function openGameOptions() {
 	const playerFormElement = document.querySelector('.new-game__form');
 	const player1Element = playerFormElement.querySelector('#player1');
 	const player2Element = playerFormElement.querySelector('#player2');
+	const pairsElement = playerFormElement.querySelector('#pairs');
 	const errorMsgElement = document.querySelector('.error-msg');
 
 	const savedNames = getNames();
@@ -24,8 +25,11 @@ export function openGameOptions() {
 			playerFormElement.removeEventListener('submit', newGameHandler);
 			newGameDrawer.classList.remove('drawer--show');
 			errorMsgElement.classList.remove('error-msg--show');
+			
+			const pairs = parseInt(pairsElement.value);
+			
 			updatePlayerNames(player1, player2);
-			setupDeck();
+			setupDeck(pairs);
 			startGame();
 		} else {
 			errorMsgElement.classList.add('error-msg--show');
