@@ -4,11 +4,10 @@ import { randomTranslate, shuffleArray } from './utils.js';
 
 export function setupDeck(pairs = 12) {
 	// create array of cards with pairs in random order
-	const deckBlueprint = createDeckBlueprint(frontImagePaths, pairs);
+	const deckBlueprint = createDeckBlueprint(frontImagePaths, 12);
 
 	// create HTML elements for the cards
 	const deck = createDeck(deckBlueprint, backImagePaths[0]);
-	console.log('setupDeck', deck);
 
 	paintCardsOnBoard(deck); // show the cards in the browser
 
@@ -21,8 +20,6 @@ function createDeckBlueprint(frontImagePaths, pairs) {
 	const imagesWithValues = randomImages.map(function (image, i) {
 		return { value: i + 1, image };
 	});
-
-	console.log({ imagesWithValues, frontImagePaths });
 
 	const deck = imagesWithValues.concat(imagesWithValues);
 

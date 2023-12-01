@@ -128,7 +128,6 @@ export function changeCurrentPlayer() {
 }
 
 export function updateHighScoreList({ isTie, winner }) {
-	console.log('updateHighScore', winner);
 	if (isTie) {
 		return state.highScore;
 	}

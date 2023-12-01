@@ -7,7 +7,6 @@ export function setupScoreboardListener() {
 		const scoreP2 = scoreElement.querySelector('.scoreboard__score-p2');
 		const nameP1 = scoreElement.querySelector('.scoreboard__name-p1');
 		const nameP2 = scoreElement.querySelector('.scoreboard__name-p2');
-		console.log({ scoreboardUpdate: e.detail });
 
 		if (!isNaN(e.detail.score?.player1)) {
 			// only update elements if needed

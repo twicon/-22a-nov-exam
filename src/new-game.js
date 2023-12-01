@@ -3,31 +3,38 @@ import { startGame } from './game.js';
 import { getNames, updatePlayerNames } from './store/state.js';
 
 export function openGameOptions() {
-	const backdropElement = document.querySelector('.backdrop');
-	const playerFormElement = document.querySelector('.player-form');
+	const newGameDrawer = document.querySelector('.new-game');
+	const playerFormElement = document.querySelector('.new-game__form');
 	const player1Element = playerFormElement.querySelector('#player1');
 	const player2Element = playerFormElement.querySelector('#player2');
+	const pairsElement = playerFormElement.querySelector('#pairs');
+	const errorMsgElement = document.querySelector('.error-msg');
 
-	const names = getNames();
+	const savedNames = getNames();
 
-	playerFormElement.style.display = 'flex';
-	backdropElement.style.display = 'flex';
-	player1Element.value = names.player1;
-	player2Element.value = names.player2;
+	newGameDrawer.classList.add('drawer--show');
+	player1Element.value = savedNames.player1;
+	player2Element.value = savedNames.player2;
 
-	playerFormElement.addEventListener('submit', function (event) {
+	function newGameHandler(event) {
 		event.preventDefault();
 		const player1 = player1Element.value;
 		const player2 = player2Element.value;
 
 		if (player1 != '' && player2 != '') {
-			backdropElement.style.display = 'none';
-			playerFormElement.style.display = 'none';
+			playerFormElement.removeEventListener('submit', newGameHandler);
+			newGameDrawer.classList.remove('drawer--show');
+			errorMsgElement.classList.remove('error-msg--show');
+			
+			const pairs = parseInt(pairsElement.value);
+			
 			updatePlayerNames(player1, player2);
-			setupDeck();
+			setupDeck(pairs);
 			startGame();
 		} else {
-			console.log('Please enter names for both players');
+			errorMsgElement.classList.add('error-msg--show');
 		}
-	});
+	}
+
+	playerFormElement.addEventListener('submit', newGameHandler);
 }

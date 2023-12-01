@@ -1,0 +1,27 @@
+.new-game {
+	&__header {
+		color: darkmagenta;
+		font-size: 2.5rem;
+	}
+
+	&__form {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+
+		label,
+		button {
+			margin-top: 1rem;
+		}
+
+		.error-msg {
+			color: red;
+			margin-top: 0.5rem;
+			visibility: hidden;
+
+			&--show {
+				visibility: visible;
+			}
+		}
+	}
+}

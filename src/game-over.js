@@ -2,14 +2,10 @@ import { openGameOptions } from './new-game.js';
 import { getNames, getScore, updateHighScoreList } from './store/state.js';
 
 export function openGameOver() {
-	const backdrop = document.querySelector('.backdrop');
 	const gameOverElement = document.querySelector('.game-over');
 	const msgElement = gameOverElement.querySelector('.game-over__msg');
 	const newGameBtnElement =
 		gameOverElement.querySelector('.game-over__button');
-
-	backdrop.style.display = 'flex';
-	gameOverElement.style.display = 'flex';
 
 	const winnerData = determineWinner();
 	msgElement.innerText = createWinMessage(winnerData);
@@ -18,10 +14,12 @@ export function openGameOver() {
 
 	createHighScoreList(highScore);
 
+	gameOverElement.classList.add('drawer--show');
+
 	newGameBtnElement.addEventListener(
 		'click',
 		function () {
-			gameOverElement.style.display = 'none';
+			gameOverElement.classList.remove('drawer--show');
 			openGameOptions();
 		},
 		{ once: true }
@@ -50,12 +48,12 @@ function createWinMessage({ isTie, winner, score }) {
 }
 
 function createHighScoreList(highScore) {
-	const highScoreElement = document.querySelector('.high-score');
+	const highScoreElement = document.querySelector('.high-score__list');
+	highScoreElement.replaceChildren(); // avoid duplicates
 
 	const highScoreArray = Object.keys(highScore).sort(
 		(a, b) => highScore[b] - highScore[a]
 	);
-	console.log(highScoreArray);
 
 	for (const player of highScoreArray) {
 		const li = document.createElement('li');
