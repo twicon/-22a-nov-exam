@@ -4,7 +4,7 @@ import { randomTranslate, shuffleArray } from './utils.js';
 
 export function setupDeck(pairs = 12) {
 	// create array of cards with pairs in random order
-	const deckBlueprint = createDeckBlueprint(frontImagePaths, pairs);
+	const deckBlueprint = createDeckBlueprint(frontImagePaths, 12);
 
 	// create HTML elements for the cards
 	const deck = createDeck(deckBlueprint, backImagePaths[0]);

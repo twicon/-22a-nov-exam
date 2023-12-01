@@ -1,0 +1,25 @@
+.game-over {
+	&__msg {
+		font-size: 2rem;
+	}
+
+	&__button {
+		margin: 1rem 0;
+	}
+}
+
+.game-over-container {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.high-score {
+	margin: 1rem 0;
+
+	&__header {
+		font-size: 1.2rem;
+		text-align: center;
+	}
+}
