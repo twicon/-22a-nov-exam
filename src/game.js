@@ -12,7 +12,7 @@ export async function startGame() {
 	let gameIsRunning = true;
 	let currentPlayer = changeCurrentPlayer();
 
-	gameBoardElement.classList.add('game-board--show');
+	gameBoardElement.classList.add('drawer--show');
 
 	while (gameIsRunning) {
 		const changePlayer = await takeTurn(currentPlayer);
@@ -25,6 +25,6 @@ export async function startGame() {
 		gameIsRunning = checkForNotFoundPairs(); // stop playing if no pairs are left to find
 	}
 
-	gameBoardElement.classList.remove('game-board--show');
+	gameBoardElement.classList.remove('drawer--show');
 	openGameOver();
 }
